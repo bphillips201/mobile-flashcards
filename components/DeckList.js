@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { fetchDecks } from '../utils/api';
 import { getDecks } from '../actions/index';
 import { AppLoading } from 'expo';
@@ -33,7 +33,12 @@ class DeckList extends Component {
       <ScrollView style={{flex: 1}}>
         {Object.keys(decks).map((deck) => {
           return (
-            <Text key={deck}>{deck}</Text>
+            <TouchableOpacity key={deck} onPress={() => this.props.navigation.navigate(
+              'DeckDetail',
+              { deckId: deck }
+            )}>
+              <Text>{deck}</Text>
+            </TouchableOpacity>
           )
         })}
       </ScrollView>
