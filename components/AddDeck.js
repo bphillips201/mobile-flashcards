@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpaci
 import { NavigationActions } from 'react-navigation';
 import { addDeckTitle } from '../actions';
 import { submitDeckTitle } from '../utils/api';
+import shortid from 'shortid';
 
 class AddDeck extends Component {
 
@@ -23,10 +24,11 @@ class AddDeck extends Component {
 
   submit = () => {
     const { title } = this.state;
+    const id = shortid.generate();
 
-    this.props.dispatch(addDeckTitle(title))
+    this.props.dispatch(addDeckTitle(title, id))
     
-    submitDeckTitle(title);
+    submitDeckTitle(title, id);
 
     this.setState({ title: '' })
 

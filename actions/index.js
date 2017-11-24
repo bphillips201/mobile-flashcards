@@ -12,8 +12,8 @@ export function getDecks (decks) {
 export function addDeckTitle (title, id) {
   return {
     type: ADD_DECK_TITLE,
-    id,
-    title
+    id: id,
+    title: title
   }
 }
 

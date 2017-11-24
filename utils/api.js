@@ -15,10 +15,10 @@ export function fetchDeck(id) {
     .then(data => data.filter((item) => item.id === id));
 }
 
-export function submitDeckTitle (title) {
+export function submitDeckTitle (title, id) {
   return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
     [title]: {
-      id: shortid.generate(),
+      id,
       title,
       questions: []
     }
