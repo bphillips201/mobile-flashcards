@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import reducer from './reducers';
-import { setDummyData } from './utils/_decks';
 import { purple, white } from './utils/colors';
 import AddDeck from './components/AddDeck';
 import DeckList from './components/DeckList';
@@ -30,7 +29,7 @@ const Tabs = TabNavigator({
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: 'New Deck',
+      tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   }
@@ -52,6 +51,10 @@ const Tabs = TabNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount () {
+    console.log(this.props);
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
