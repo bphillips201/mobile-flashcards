@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
 import { Constants } from 'expo';
 import { createStore } from 'redux';
+import devToolsEnhancer from 'remote-redux-devtools';
 import { Provider } from 'react-redux';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
@@ -50,6 +51,8 @@ const Tabs = TabNavigator({
   }
 })
 
+const store = createStore(reducer, devToolsEnhancer());
+
 export default class App extends React.Component {
   componentDidMount () {
     console.log(this.props);
@@ -57,7 +60,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <View style={{flex: 1}}>
           <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
           <Tabs />
