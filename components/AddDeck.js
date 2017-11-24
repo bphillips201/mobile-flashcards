@@ -16,7 +16,7 @@ class AddDeck extends Component {
     }))
   }
   toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'DeckList' }))
   }
   submit = () => {
     const { name } = this.state;
