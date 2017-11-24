@@ -54,10 +54,6 @@ const Tabs = TabNavigator({
 const store = createStore(reducer, devToolsEnhancer());
 
 export default class App extends React.Component {
-  componentDidMount () {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <Provider store={store}>

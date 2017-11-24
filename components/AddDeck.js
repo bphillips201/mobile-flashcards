@@ -2,33 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { addDeck } from '../actions';
-import { submitDeck } from '../utils/api';
+import { addDeckTitle } from '../actions';
+import { submitDeckTitle } from '../utils/api';
 
 class AddDeck extends Component {
 
   state = {
-    name: ''
+    title: ''
   }
 
-  handleNameChange = (name) => {
+  handleTitleChange = (title) => {
     this.setState(() => ({
-      name
+      title
     }))
   }
 
   toHome = () => {
     this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'DeckList' }))
   }
-  
+
   submit = () => {
-    const { name } = this.state;
+    const { title } = this.state;
 
-    this.props.dispatch(addDeck(name))
+    this.props.dispatch(addDeckTitle(title))
     
-    submitDeck(name);
+    submitDeckTitle(title);
 
-    this.setState({ name: '' })
+    this.setState({ title: '' })
 
     Keyboard.dismiss();
 
@@ -36,15 +36,15 @@ class AddDeck extends Component {
   }
 
   render() {
-    const { name } = this.state;
+    const { title } = this.state;
 
     return (
       <View style={{flex: 1}}>
-        <Text>What is the name of your new deck?</Text>
+        <Text>What is the title of your new deck?</Text>
         <KeyboardAvoidingView>
           <TextInput
-            value={name}
-            onChangeText={this.handleNameChange}
+            value={title}
+            onChangeText={this.handleTitleChange}
           />
         </KeyboardAvoidingView>
         <TouchableOpacity onPress={this.submit}>
