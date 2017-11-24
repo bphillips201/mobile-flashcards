@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { addDeck } from '../actions';
 import { submitDeck } from '../utils/api';
@@ -10,20 +10,27 @@ class AddDeck extends Component {
   state = {
     name: ''
   }
+
   handleNameChange = (name) => {
     this.setState(() => ({
       name
     }))
   }
+
   toHome = () => {
     this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'DeckList' }))
   }
+  
   submit = () => {
     const { name } = this.state;
 
     this.props.dispatch(addDeck(name))
     
     submitDeck(name);
+
+    this.setState({ name: '' })
+
+    Keyboard.dismiss();
 
     this.toHome();
   }
