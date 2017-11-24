@@ -4,8 +4,9 @@ import { Constants } from 'expo';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import reducer from './reducers'
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import reducer from './reducers';
+import { setDummyData } from './utils/_decks';
 import { purple, white } from './utils/colors';
 import AddDeck from './components/AddDeck';
 import DeckList from './components/DeckList';
