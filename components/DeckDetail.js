@@ -40,6 +40,15 @@ class DeckDetail extends Component {
     return (
       <View style={{flex: 1}}>
         <Text>{deck.title}</Text>
+        <Text>{deck.questions.length} cards</Text>
+
+        <TouchableOpacity>
+          <Text>Add Card</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text>Start Quiz</Text>
+        </TouchableOpacity>
       </View>      
     )
   }
