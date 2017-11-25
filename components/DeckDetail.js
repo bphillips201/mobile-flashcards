@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
 import { fetchDeck } from '../utils/api';
+import { purple } from '../utils/colors';
 import { AppLoading } from 'expo';
+import { Text, Button } from 'react-native-elements';
 
 class DeckDetail extends Component {
   state = {
@@ -39,23 +41,30 @@ class DeckDetail extends Component {
     }
 
     return (
-      <View style={{flex: 1}}>
-        <Text>{deck.title}</Text>
-        <Text>{deck.questions.length} cards</Text>
+      <View>
+        <Text h1 style={{textAlign: "center", marginTop: 15}}>{deck.title}</Text>
+        <Text h4 style={{textAlign: "center", marginTop: 15}}>{deck.questions.length} cards</Text>
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate(
-          'AddCard',
-          { deckId: deckId }
-        )}>
-          <Text>Add Card</Text>
-        </TouchableOpacity>
+        <Button
+          large
+          title="Add Card"
+          buttonStyle={{marginTop: 30}}
+          onPress={() => this.props.navigation.navigate(
+            'AddCard',
+            { deckId: deckId }
+          )}
+        />
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate(
-          'Quiz',
-          { questions: deck.questions }
-        )}>
-          <Text>Start Quiz</Text>
-        </TouchableOpacity>
+        <Button
+          large
+          title="Start Quiz"
+          backgroundColor={purple}
+          buttonStyle={{marginTop: 15}}
+          onPress={() => this.props.navigation.navigate(
+            'Quiz',
+            { questions: deck.questions }
+          )}
+        />
       </View>      
     )
   }

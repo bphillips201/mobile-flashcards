@@ -4,7 +4,9 @@ import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpaci
 import { NavigationActions } from 'react-navigation';
 import { addDeckTitle } from '../actions';
 import { submitDeckTitle } from '../utils/api';
+import { purple } from '../utils/colors';
 import shortid from 'shortid';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 
 class AddDeck extends Component {
 
@@ -41,17 +43,21 @@ class AddDeck extends Component {
     const { title } = this.state;
 
     return (
-      <View style={{flex: 1}}>
-        <Text>What is the title of your new deck?</Text>
+      <View>
+        <FormLabel>What is the title of your new deck?</FormLabel>
         <KeyboardAvoidingView>
-          <TextInput
+          <FormInput
             value={title}
             onChangeText={this.handleTitleChange}
           />
         </KeyboardAvoidingView>
-        <TouchableOpacity onPress={this.submit}>
-          <Text>Submit</Text>
-        </TouchableOpacity>
+        <Button
+          large
+          title="Create Deck"
+          buttonStyle={{marginTop: 15}}
+          backgroundColor={purple}
+          onPress={this.submit}
+        />
       </View>
     )
   }

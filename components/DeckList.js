@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 import { fetchDecks } from '../utils/api';
 import { getDecks } from '../actions';
 import { AppLoading } from 'expo';
-import { Card, ListItem, Button } from 'react-native-elements'
+import { List, ListItem } from 'react-native-elements'
 
 class DeckList extends Component {
   state = {
@@ -30,23 +30,23 @@ class DeckList extends Component {
     }
 
     return (
-      <ScrollView style={{flex: 1}}>
+      <List>
         {decks.map((deck) => {
           return (
-            <TouchableOpacity key={deck.id} onPress={() => this.props.navigation.navigate(
-              'DeckDetail',
-              { 
-                deckTitle: deck.title,
-                deckId: deck.id
-              }
-            )}>
-              <Card>
-                <Text>{deck.title}</Text>
-              </Card>
-            </TouchableOpacity>
+            <ListItem
+              key={deck.id}
+              title={deck.title}
+              onPress={() => this.props.navigation.navigate(
+                'DeckDetail',
+                { 
+                  deckTitle: deck.title,
+                  deckId: deck.id
+                }
+              )}
+            />
           )
         })}
-      </ScrollView>
+      </List>
     )
   }
 }

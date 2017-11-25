@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpaci
 import { NavigationActions } from 'react-navigation';
 import { addCardToDeck } from '../actions';
 import { submitCardToDeck } from '../utils/api';
+import { purple } from '../utils/colors';
 import shortid from 'shortid';
+
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 
 class AddDeck extends Component {
 
@@ -56,24 +59,28 @@ class AddDeck extends Component {
     return (
       <View style={{flex: 1}}>
         <KeyboardAvoidingView>
-          <Text>What is your question?</Text>
-          <TextInput
+          <FormLabel>What is your question?</FormLabel>
+          <FormInput
             value={question}
             onChangeText={this.handleQuestionChange}
           />
         </KeyboardAvoidingView>
 
         <KeyboardAvoidingView>
-          <Text>What is the answer?</Text>
-          <TextInput
+          <FormLabel>What is the answer?</FormLabel>
+          <FormInput
             value={answer}
             onChangeText={this.handleAnswerChange}
           />
         </KeyboardAvoidingView>
 
-        <TouchableOpacity onPress={this.submit}>
-          <Text>Submit</Text>
-        </TouchableOpacity>
+        <Button
+          large
+          title="Add Card"
+          buttonStyle={{marginTop: 15}}
+          backgroundColor={purple}
+          onPress={this.submit}
+        />
       </View>
     )
   }
