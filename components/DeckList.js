@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 import { fetchDecks } from '../utils/api';
 import { getDecks } from '../actions';
 import { AppLoading } from 'expo';
+import { Card, ListItem, Button } from 'react-native-elements'
 
 class DeckList extends Component {
   state = {
@@ -39,7 +40,9 @@ class DeckList extends Component {
                 deckId: deck.id
               }
             )}>
-              <Text>{deck.title}</Text>
+              <Card>
+                <Text>{deck.title}</Text>
+              </Card>
             </TouchableOpacity>
           )
         })}
