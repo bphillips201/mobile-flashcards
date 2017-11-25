@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import FlipCard from 'react-native-flip-card';
+import { Text, Card, Button } from 'react-native-elements'
+import { blue, red } from '../utils/colors';
 
 class Quiz extends Component {
   state = {
@@ -18,26 +20,36 @@ class Quiz extends Component {
     const { currentQuestion } = this.state;
 
     return(
-      <View>
-        <Text>{currentQuestion} / {questions.length}</Text>
+      <View style={styles.container}>
+        <Text h4 style={{margin: 15}}>{currentQuestion} / {questions.length}</Text>
         {questions.map((question) => {
           return (
-            <View>
-              <FlipCard>
-                <View>
-                  <Text>{question.question}</Text>
+            <View key={question.question}>
+              <FlipCard 
+                friction={6}
+                style={styles.flipCard}
+                perspective={1000}
+                flipHorizontal={true}
+                flipVertical={false}
+              >
+                <View style={styles.face}>
+                  <Text h4>{question.question}</Text>
                 </View>
-                <View>
-                  <Text>{question.answer}</Text>
+                <View style={styles.face}>
+                  <Text h4>{question.answer}</Text>
                 </View>
               </FlipCard>
               <View>
-                <TouchableOpacity>
-                  <Text>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text>Incorrect</Text>
-                </TouchableOpacity>
+                <Button 
+                  backgroundColor={blue}
+                  title="Correct"
+                  buttonStyle={{marginTop: 15}}
+                />
+                <Button 
+                  backgroundColor={red}
+                  title="Incorrect"
+                  buttonStyle={{marginTop: 15}}
+                />
               </View>
             </View>
           )
@@ -46,5 +58,25 @@ class Quiz extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
+  flipCard: {
+    flex: 1,
+    margin: 15,
+    alignItems: 'center',
+    flexBasis: 200,
+    backgroundColor: 'white'
+  },
+  face: {
+    flex: 1,
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 export default Quiz;
