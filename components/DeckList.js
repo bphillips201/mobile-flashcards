@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { fetchDecks } from '../utils/api';
-import { getDecks } from '../actions/index';
+import { getDecks } from '../actions';
 import { AppLoading } from 'expo';
 
 class DeckList extends Component {
@@ -23,7 +23,6 @@ class DeckList extends Component {
   render() {
     const { ready } = this.state;
     const { decks } = this.props;
-    console.log(decks);
 
     if (ready === false) {
       return <AppLoading />
@@ -31,13 +30,16 @@ class DeckList extends Component {
 
     return (
       <ScrollView style={{flex: 1}}>
-        {Object.keys(decks).map((deck) => {
+        {decks.map((deck) => {
           return (
-            <TouchableOpacity key={deck} onPress={() => this.props.navigation.navigate(
+            <TouchableOpacity key={deck.id} onPress={() => this.props.navigation.navigate(
               'DeckDetail',
-              { deckId: deck }
+              { 
+                deckTitle: deck.title,
+                deckId: deck.id
+              }
             )}>
-              <Text>{deck}</Text>
+              <Text>{deck.title}</Text>
             </TouchableOpacity>
           )
         })}
@@ -48,7 +50,12 @@ class DeckList extends Component {
 
 function mapStateToProps (decks) {
   return {
-    decks
+    decks: Object.keys(decks).map((i) => {
+      return {
+        id: i,
+        ...decks[i]
+      }
+    })
   }
 }
 

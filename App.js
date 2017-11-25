@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform, AsyncStorage } from 'react-native';
 import { Constants } from 'expo';
 import { createStore } from 'redux';
 import devToolsEnhancer from 'remote-redux-devtools';
@@ -73,6 +73,11 @@ const MainNavigator = StackNavigator({
 const store = createStore(reducer, devToolsEnhancer());
 
 export default class App extends React.Component {
+
+  // componentDidMount () {
+  //   AsyncStorage.clear();
+  // }
+
   render() {
     return (
       <Provider store={store}>

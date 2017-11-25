@@ -13,8 +13,7 @@ function decks (state = {}, action) {
       const { title, id } = action;
       return {
         ...state,
-        [title]: {
-          id: id,
+        [id]: {
           title: title,
           questions: []
         }
