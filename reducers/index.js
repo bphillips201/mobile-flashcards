@@ -1,6 +1,8 @@
 import { 
-  ADD_DECK_TITLE, 
-  GET_DECKS } from '../actions';
+  GET_DECKS,
+  ADD_DECK_TITLE,
+  ADD_CARD_TO_DECK 
+} from '../actions';
 
 function decks (state = {}, action) {
   switch (action.type) {
@@ -16,6 +18,18 @@ function decks (state = {}, action) {
         [id]: {
           title: title,
           questions: []
+        }
+      }
+    case ADD_CARD_TO_DECK :
+      const { card, deckId } = action;
+      return {
+        ...state,
+        [deckId]: {
+          ...state[deckId],
+          questions: [
+            ...state[deckId]['questions'],
+            card
+          ]
         }
       }
     default :

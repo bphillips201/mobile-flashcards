@@ -17,9 +17,9 @@ class DeckDetail extends Component {
   }
 
   componentDidMount () {
-    const { navigation } = this.props;
+    const { deckId } = this.props.navigation.state.params;
 
-    fetchDeck(navigation.state.params.deckId)
+    fetchDeck(deckId)
       .then((deck) => {
         this.setState({
           deck,
@@ -30,6 +30,7 @@ class DeckDetail extends Component {
 
   render() {
     const { deck, ready } = this.state;
+    const { deckId } = this.props.navigation.state.params;
 
     console.log(deck);
 
@@ -42,7 +43,10 @@ class DeckDetail extends Component {
         <Text>{deck.title}</Text>
         <Text>{deck.questions.length} cards</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate(
+          'AddCard',
+          { deckId: deckId }
+        )}>
           <Text>Add Card</Text>
         </TouchableOpacity>
 

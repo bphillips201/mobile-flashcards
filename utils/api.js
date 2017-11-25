@@ -23,3 +23,18 @@ export function submitDeckTitle (title, id) {
     }
   }))
 }
+
+export function submitCardToDeck (card, deckId) {
+  AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(res => JSON.parse(res))
+    .then(data => {
+      const deck = data[deckId];
+      deck.questions.push(card);
+      
+      return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+        [deckId]: {
+          ...deck
+        }
+      }))
+    })
+}
