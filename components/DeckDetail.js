@@ -58,4 +58,10 @@ class DeckDetail extends Component {
   }
 }
 
-export default connect(null)(DeckDetail);
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckDetail);
