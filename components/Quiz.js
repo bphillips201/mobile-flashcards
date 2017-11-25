@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, Animated } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 import { Text, Card, Button } from 'react-native-elements'
 import { blue, red } from '../utils/colors';
@@ -33,9 +33,11 @@ class Quiz extends Component {
                 flipVertical={false}
               >
                 <View style={styles.face}>
+                  <Text h5 style={{color: red}}>Question</Text>
                   <Text h4>{question.question}</Text>
                 </View>
                 <View style={styles.face}>
+                  <Text h5 style={{color: red}}>Answer</Text>
                   <Text h4>{question.answer}</Text>
                 </View>
               </FlipCard>
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 15,
     alignItems: 'center',
-    flexBasis: 200,
+    flexBasis: 250,
     backgroundColor: 'white'
   },
   face: {
