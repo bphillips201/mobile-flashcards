@@ -104,11 +104,11 @@ class Quiz extends Component {
                   flipVertical={false}
                 >
                   <View style={styles.face}>
-                    <Text h5 style={{color: red}}>Question</Text>
+                    <Text h5 style={{color: red}}>Tap for answer</Text>
                     <Text h4>{currentQuestion.question}</Text>
                   </View>
                   <View style={styles.face}>
-                    <Text h5 style={{color: red}}>Answer</Text>
+                    <Text h5 style={{color: red}}>Tap for question</Text>
                     <Text h4>{currentQuestion.answer}</Text>
                   </View>
                 </FlipCard>
