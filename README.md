@@ -1,6 +1,6 @@
 ## UdaciCards - Udacity React Developer Course - Project 3
 
-This is the third and final assessment project for Udacity's React Developer course, developed by React Training. Tested on both iOS and Android.
+This is the third and final assessment project for Udacity's React Developer course, developed by React Training. Tested via iOS emulator and Android device.
 
 ## Installation
 
