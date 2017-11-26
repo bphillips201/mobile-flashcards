@@ -8,8 +8,7 @@ import { Text, Button } from 'react-native-elements';
 
 class DeckDetail extends Component {
   state = {
-    ready: false,
-    deck: {}
+    ready: false
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -31,8 +30,8 @@ class DeckDetail extends Component {
   }
 
   render() {
-    const { deck, ready } = this.state;
-    const { deckId } = this.props.navigation.state.params;
+    const { ready } = this.state;
+    const { deck, id } = this.props;
 
     if (ready === false) {
       return <AppLoading />
@@ -49,7 +48,7 @@ class DeckDetail extends Component {
           buttonStyle={{marginTop: 30}}
           onPress={() => this.props.navigation.navigate(
             'AddCard',
-            { deckId: deckId }
+            { deckId: id }
           )}
         />
 
@@ -68,9 +67,12 @@ class DeckDetail extends Component {
   }
 }
 
-function mapStateToProps (decks) {
+function mapStateToProps (decks, ownProps) {
+  const { deckId } = ownProps.navigation.state.params;
+
   return {
-    decks
+    deck: decks[deckId],
+    id: deckId
   }
 }
 
