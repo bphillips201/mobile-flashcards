@@ -39,7 +39,7 @@ class DeckDetail extends Component {
 
     return (
       <View>
-        <Text h1 style={{textAlign: "center", marginTop: 15}}>{deck.title}</Text>
+        <Text h2 style={{textAlign: "center", marginTop: 15}}>{deck.title}</Text>
         <Text h4 style={{textAlign: "center", marginTop: 15}}>{deck.questions.length} cards</Text>
 
         <Button

@@ -5,6 +5,10 @@ import { Text, Card, Button } from 'react-native-elements'
 import { blue, red } from '../utils/colors';
 import { AppLoading } from 'expo';
 import FlipCard from 'react-native-flip-card';
+import { 
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/notifications';
 
 class Quiz extends Component {
   state = {
@@ -24,6 +28,9 @@ class Quiz extends Component {
 
   componentDidMount () {
     this.initQuiz();
+
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   initQuiz = () => {

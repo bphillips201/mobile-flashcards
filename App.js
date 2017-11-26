@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, AsyncStorage } from 'react-native';
 import { Constants } from 'expo';
 import { createStore } from 'redux';
@@ -13,6 +13,7 @@ import DeckList from './components/DeckList';
 import DeckDetail from './components/DeckDetail';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './utils/notifications';
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -92,11 +93,11 @@ const MainNavigator = StackNavigator({
 
 const store = createStore(reducer, devToolsEnhancer());
 
-export default class App extends React.Component {
+export default class App extends Component {
 
-  // componentDidMount () {
-  //   AsyncStorage.clear();
-  // }
+  componentDidMount() {
+    setLocalNotification();
+  }
 
   render() {
     return (

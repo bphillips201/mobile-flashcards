@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
 import { fetchDecks } from '../utils/api';
 import { getDecks } from '../actions';
 import { AppLoading } from 'expo';
-import { List, ListItem } from 'react-native-elements'
+import { List, ListItem, Text } from 'react-native-elements'
 
 class DeckList extends Component {
   state = {
@@ -30,27 +30,45 @@ class DeckList extends Component {
     }
 
     return (
-      <List>
-        {decks.map((deck) => {
-          return (
-            <ListItem
-              key={deck.id}
-              title={deck.title}
-              subtitle={`${deck.questions.length} cards`}
-              onPress={() => this.props.navigation.navigate(
-                'DeckDetail',
-                { 
-                  deckTitle: deck.title,
-                  deckId: deck.id
-                }
-              )}
-            />
-          )
-        })}
-      </List>
+      <View style={{flex: 1}}>
+        {decks.length === 0
+          ? <View style={styles.centered}>
+              <Text h5>No Decks created yet!</Text>
+              <Text h5>To get started, Add a Deck</Text>
+            </View>
+          : <ScrollView>
+              <List>
+                {decks.map((deck) => {
+                  return (
+                    <ListItem
+                      key={deck.id}
+                      title={deck.title}
+                      subtitle={ deck.questions.length === 1 ? `${deck.questions.length} card` : `${deck.questions.length} cards` }
+                      onPress={() => this.props.navigation.navigate(
+                        'DeckDetail',
+                        { 
+                          deckTitle: deck.title,
+                          deckId: deck.id
+                        }
+                      )}
+                    />
+                  )
+                })}
+              </List>
+            </ScrollView>
+        }
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 function mapStateToProps (decks) {
   return {
