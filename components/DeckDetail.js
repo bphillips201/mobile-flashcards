@@ -34,8 +34,6 @@ class DeckDetail extends Component {
     const { deck, ready } = this.state;
     const { deckId } = this.props.navigation.state.params;
 
-    console.log(deck);
-
     if (ready === false) {
       return <AppLoading />
     }
