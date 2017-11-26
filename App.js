@@ -28,14 +28,14 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-apps' size={30} color={tintColor} />
     }
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-add' size={30} color={tintColor} />
     }
   }
 }, {
